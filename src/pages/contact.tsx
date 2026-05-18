@@ -1,4 +1,5 @@
 import logo2 from "../assets/logo2.png";
+import { Mail } from "lucide-react";
 
 export default function Contactus() {
   return (
@@ -154,7 +155,7 @@ export default function Contactus() {
                     font-bold
                   "
                 >
-                  @
+                 <Mail size={16} />
                 </div>
 
                 <div className="flex flex-col text-left">
