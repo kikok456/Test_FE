@@ -28,6 +28,51 @@ export default function App() {
       setStatus(stat || "");
   }
   }, []);
+
+useEffect(() => {
+
+  if (!isLogin) return;
+
+  let timeout: NodeJS.Timeout;
+
+  const resetTimer = () => {
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+
+      // logout
+      localStorage.clear();
+
+      setIsLogin(false);
+      setUsername("");
+      setStatus("");
+
+      console.log("Session expired");
+
+    }, 10 * 60 * 1000);
+  };
+
+  window.addEventListener("mousemove", resetTimer);
+  window.addEventListener("keydown", resetTimer);
+  window.addEventListener("click", resetTimer);
+  window.addEventListener("scroll", resetTimer);
+
+  resetTimer();
+
+  return () => {
+
+    clearTimeout(timeout);
+
+    window.removeEventListener("mousemove", resetTimer);
+    window.removeEventListener("keydown", resetTimer);
+    window.removeEventListener("click", resetTimer);
+    window.removeEventListener("scroll", resetTimer);
+  };
+
+}, [isLogin]);
+
+  
   useEffect(() => {
   const handleScroll = () => {
     const aboutSection = document.getElementById("about-us");
