@@ -1,5 +1,5 @@
 import "../App.css";
-import bgImage from "../assets/konstruksi-bangunan.png"; 
+import bgImage from "../assets/bg.jpg"; 
 
 
 export default function Background() {
