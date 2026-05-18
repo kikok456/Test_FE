@@ -4,11 +4,12 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import gambar2 from "../assets/bb.jpg";
-import gambar3 from "../assets/bb2.webp";
-import gambar4 from "../assets/bb3.jpg";
+import gambar1 from "../assets/g1.jpg";
+import gambar2 from "../assets/g2.jpg";
+import gambar3 from "../assets/g3.jpg";
+import gambar4 from "../assets/g4.jpg";
 
-const images = [gambar2, gambar3, gambar4];
+const images = [gambar1, gambar2, gambar3, gambar4];
 
 export default function AboutUs() {
   return (
