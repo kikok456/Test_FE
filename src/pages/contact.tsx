@@ -173,7 +173,7 @@ const whatsappUrl =
                   </span>
 
                   <span className="text-xs md:text-sm font-semibold text-gray-700 break-all">
-                    loremipsum@gmail.com
+                    elkyaskaryaagung@gmail.com
                   </span>
                 </div>
               </div>
