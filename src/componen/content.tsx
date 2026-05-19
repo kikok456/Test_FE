@@ -29,12 +29,12 @@ export default function Content({ isLogin }: Props) {
       Bangun proyek
       <br />
 
-      <span className="text-orange-500">
+      <span className="text-[#8B5CF6]"> 
         tanpa kompromi
       </span>
     </h2>
 
-    <div className="w-24 h-[4px] bg-orange-500 rounded-full mt-7"></div>
+    <div className="w-24 h-[4px] bg-[#8B5CF6] rounded-full mt-7"></div>
 
   </div>
 
@@ -57,7 +57,7 @@ export default function Content({ isLogin }: Props) {
             Cek estimasi harga material bangunan secara cepat dan praktis.
           </p>
 
-          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4"></div>
+          <div className="w-24 h-1 bg-[#8B5CF6] mx-auto rounded-full mt-4"></div>
         </div>
 
         <KalkulatorBangunan />
@@ -77,7 +77,7 @@ export default function Content({ isLogin }: Props) {
             Visualisasi data material dan informasi pendukung lainnya.
           </p>
 
-          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4"></div>
+          <div className="w-24 h-1 bg-[#8B5CF6] mx-auto rounded-full mt-4"></div>
         </div>
 
         <Vizdat />
@@ -98,7 +98,7 @@ export default function Content({ isLogin }: Props) {
               Upload file Excel atau CSV untuk memperbarui data material.
             </p>
 
-            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4"></div>
+            <div className="w-24 h-1 bg-[#8B5CF6] mx-auto rounded-full mt-4"></div>
           </div>
 
           <UploadEx />
@@ -119,7 +119,7 @@ export default function Content({ isLogin }: Props) {
             maupun pertanyaan lainnya.
           </p>
 
-          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4"></div>
+          <div className="w-24 h-1 bg-[#8B5CF6] mx-auto rounded-full mt-4"></div>
         </div>
 
         <Contactus />
