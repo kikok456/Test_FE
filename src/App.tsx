@@ -230,7 +230,8 @@ useEffect(() => {
         {/* ROUTES */}
         <div className="content-wrapper">
           <Routes>
-            <Route path="/" element={<Home isLogin={isLogin} />} />
+            <Route path="/" element={
+                <Home isLogin={isLogin} status={status}/>}/>
           </Routes>
 
           <LoginModal
