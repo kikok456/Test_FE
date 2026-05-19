@@ -150,261 +150,414 @@ export default function KalkulatorBangunan() {
     totalLuas * finalHargaKerja;
 
   return (
+  <div
+    className="
+      max-w-7xl
+      mx-auto
+      px-4 md:px-6
+    "
+  >
     <div
       className="
-        max-w-3xl
-        mx-auto
-        p-4 md:p-6
-        rounded-2xl
-        shadow-lg
-        bg-white/40
-        space-y-6
-        max-h-[85vh]
-        overflow-y-auto
-        scroll-smooth
+        grid
+        grid-cols-1
+        lg:grid-cols-3
+        gap-6
+        items-start
       "
     >
-      {/* JUMLAH LANTAI */}
-      <div>
-        <label className="font-semibold text-sm md:text-base">
-          Jumlah Lantai
-        </label>
 
-        <input
-          type="number"
-          min={1}
-          value={jumlahLantai}
-          onChange={(e) => {
-            const value =
-              e.target.value;
+      {/* =========================
+          LEFT CONTENT
+      ========================== */}
+      <div className="lg:col-span-2 space-y-6 max-h-[85vh] overflow-y-auto pr-2">
 
-            if (value === "") {
-              setJumlahLantai("");
-              return;
-            }
-
-            setJumlahLantai(value);
-          }}
-          className="
-            w-full
-            border
-            rounded-xl
-            p-3
-            mt-2
-            text-sm
-            md:text-base
-          "
-        />
-      </div>
-
-      {/* FORM PER LANTAI */}
-      {lantaiData.map((item) => (
+        {/* JUMLAH LANTAI */}
         <div
-          key={item.lantai}
           className="
-            border
-            rounded-2xl
-            p-4 md:p-5
-            bg-white
-            space-y-4
+            bg-white/80
+            backdrop-blur-md
+            border border-gray-200
+            rounded-3xl
+            p-5 md:p-6
+            shadow-lg
           "
         >
-          <h2 className="text-lg md:text-xl font-bold">
-            Lantai {item.lantai}
-          </h2>
+          <label
+            className="
+              font-semibold
+              text-sm md:text-base
+              text-gray-700
+            "
+          >
+            Jumlah Lantai
+          </label>
 
-          {/* dropdown samakan ukuran */}
-          {item.lantai > 1 && (
-            <div>
-              <label className="font-semibold text-sm md:text-base">
-                Samakan Ukuran
-              </label>
+          <input
+            type="number"
+            min={1}
+            value={jumlahLantai}
+            onChange={(e) => {
+              const value = e.target.value;
 
-              <select
-                value={item.samakanDengan}
-                onChange={(e) =>
-                  handleSamakanUkuran(
-                    item.lantai,
-                    e.target.value
-                  )
-                }
+              if (value === "") {
+                setJumlahLantai("");
+                return;
+              }
+
+              setJumlahLantai(value);
+            }}
+            className="
+              w-full
+              border border-gray-300
+              rounded-2xl
+              p-3
+              mt-3
+              text-sm md:text-base
+              outline-none
+              transition
+              focus:ring-2
+              focus:ring-purple-400
+              focus:border-purple-400
+            "
+          />
+        </div>
+
+        {/* FORM PER LANTAI */}
+        {lantaiData.map((item) => (
+          <div
+            key={item.lantai}
+            className="
+              bg-white/80
+              backdrop-blur-md
+              border border-gray-200
+              rounded-3xl
+              p-5 md:p-6
+              shadow-lg
+              space-y-5
+            "
+          >
+
+            {/* HEADER */}
+            <div className="flex items-center justify-between">
+              <h2
                 className="
-                  w-full
-                  border
-                  rounded-xl
-                  p-3
-                  mt-2
-                  text-sm
-                  md:text-base
+                  text-xl md:text-2xl
+                  font-black
+                  text-gray-800
                 "
               >
-                <option value="">
-                  Manual
-                </option>
+                Lantai {item.lantai}
+              </h2>
 
-                {lantaiData
-                  .filter(
-                    (x) =>
-                      x.lantai <
-                      item.lantai
-                  )
-                  .map((x) => (
-                    <option
-                      key={x.lantai}
-                      value={x.lantai}
-                    >
-                      Lantai {x.lantai}
-                    </option>
-                  ))}
-              </select>
+              <div
+                className="
+                  px-4 py-1
+                  rounded-full
+                  bg-purple-100
+                  text-[#8B5CF6]
+                  text-sm
+                  font-semibold
+                "
+              >
+                {
+                  (
+                    Number(item.panjang || 0) *
+                    Number(item.lebar || 0)
+                  ).toFixed(2)
+                } m²
+              </div>
             </div>
-          )}
 
-          {/* panjang */}
-          <div>
-            <label className="font-semibold text-sm md:text-base">
-              Panjang Ruangan (m)
-            </label>
+            {/* DROPDOWN */}
+            {item.lantai > 1 && (
+              <div>
+                <label
+                  className="
+                    font-semibold
+                    text-sm md:text-base
+                    text-gray-700
+                  "
+                >
+                  Samakan Ukuran
+                </label>
 
-            <input
-              type="number"
-              value={item.panjang}
-              disabled={
-                item.samakanDengan !==
-                ""
-              }
-              onChange={(e) =>
-                updateLantai(
-                  item.lantai,
-                  "panjang",
-                  e.target.value
-                )
-              }
+                <select
+                  value={item.samakanDengan}
+                  onChange={(e) =>
+                    handleSamakanUkuran(
+                      item.lantai,
+                      e.target.value
+                    )
+                  }
+                  className="
+                    w-full
+                    border border-gray-300
+                    rounded-2xl
+                    p-3
+                    mt-3
+                    text-sm md:text-base
+                    outline-none
+                    transition
+                    focus:ring-2
+                    focus:ring-purple-400
+                    focus:border-purple-400
+                  "
+                >
+                  <option value="">
+                    Manual
+                  </option>
+
+                  {lantaiData
+                    .filter(
+                      (x) =>
+                        x.lantai < item.lantai
+                    )
+                    .map((x) => (
+                      <option
+                        key={x.lantai}
+                        value={x.lantai}
+                      >
+                        Lantai {x.lantai}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            )}
+
+            {/* GRID INPUT */}
+            <div
               className="
-                w-full
-                border
-                rounded-xl
-                p-3
-                mt-2
-                text-sm
-                md:text-base
-                disabled:bg-gray-100
-                disabled:cursor-not-allowed
+                grid
+                grid-cols-1
+                md:grid-cols-2
+                gap-4
               "
-            />
+            >
+
+              {/* PANJANG */}
+              <div>
+                <label
+                  className="
+                    font-semibold
+                    text-sm md:text-base
+                    text-gray-700
+                  "
+                >
+                  Panjang Ruangan (m)
+                </label>
+
+                <input
+                  type="number"
+                  value={item.panjang}
+                  disabled={
+                    item.samakanDengan !== ""
+                  }
+                  onChange={(e) =>
+                    updateLantai(
+                      item.lantai,
+                      "panjang",
+                      e.target.value
+                    )
+                  }
+                  className="
+                    w-full
+                    border border-gray-300
+                    rounded-2xl
+                    p-3
+                    mt-3
+                    text-sm md:text-base
+                    outline-none
+                    transition
+                    focus:ring-2
+                    focus:ring-purple-400
+                    focus:border-purple-400
+                    disabled:bg-gray-100
+                    disabled:cursor-not-allowed
+                  "
+                />
+              </div>
+
+              {/* LEBAR */}
+              <div>
+                <label
+                  className="
+                    font-semibold
+                    text-sm md:text-base
+                    text-gray-700
+                  "
+                >
+                  Lebar Ruangan (m)
+                </label>
+
+                <input
+                  type="number"
+                  value={item.lebar}
+                  disabled={
+                    item.samakanDengan !== ""
+                  }
+                  onChange={(e) =>
+                    updateLantai(
+                      item.lantai,
+                      "lebar",
+                      e.target.value
+                    )
+                  }
+                  className="
+                    w-full
+                    border border-gray-300
+                    rounded-2xl
+                    p-3
+                    mt-3
+                    text-sm md:text-base
+                    outline-none
+                    transition
+                    focus:ring-2
+                    focus:ring-purple-400
+                    focus:border-purple-400
+                    disabled:bg-gray-100
+                    disabled:cursor-not-allowed
+                  "
+                />
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* =========================
+          RIGHT SIDEBAR
+      ========================== */}
+      <div className="lg:col-span-1">
+
+        <div
+          className="
+            sticky
+            top-28
+            bg-white
+            border border-gray-200
+            rounded-3xl
+            p-6
+            shadow-xl
+            space-y-6
+          "
+        >
+
+          {/* TITLE */}
+          <div>
+            <h2
+              className="
+                text-2xl
+                font-black
+                text-gray-900
+              "
+            >
+              Estimasi Harga
+            </h2>
+
+            <div
+              className="
+                w-16
+                h-1
+                bg-[#8B5CF6]
+                rounded-full
+                mt-4
+              "
+            ></div>
           </div>
 
-          {/* lebar */}
-          <div>
-            <label className="font-semibold text-sm md:text-base">
-              Lebar Ruangan (m)
-            </label>
-
-            <input
-              type="number"
-              value={item.lebar}
-              disabled={
-                item.samakanDengan !==
-                ""
-              }
-              onChange={(e) =>
-                updateLantai(
-                  item.lantai,
-                  "lebar",
-                  e.target.value
-                )
-              }
-              className="
-                w-full
-                border
-                rounded-xl
-                p-3
-                mt-2
-                text-sm
-                md:text-base
-                disabled:bg-gray-100
-                disabled:cursor-not-allowed
-              "
-            />
-          </div>
-
-          {/* luas */}
-          <div className="bg-gray-100 rounded-xl p-3">
-            <p className="text-sm md:text-base">
-              Luas :
-              <b>
-                {" "}
-                {(
-                  Number(
-                    item.panjang || 0
-                  ) *
-                  Number(
-                    item.lebar || 0
-                  )
-                ).toFixed(2)}{" "}
-                m²
-              </b>
+          {/* TOTAL LUAS */}
+          <div
+            className="
+              bg-gray-50
+              rounded-2xl
+              p-5
+            "
+          >
+            <p className="text-sm text-gray-500">
+              Total Luas
             </p>
-          </div>
-        </div>
-      ))}
 
-      {/* OUTPUT */}
-      <div className="bg-gray-100 rounded-2xl p-4 md:p-5 space-y-4">
-        <div className="space-y-2">
-          <p className="text-base md:text-lg">
-            Total Luas :
-            <b>
-              {" "}
+            <h3
+              className="
+                text-3xl
+                font-black
+                mt-1
+                text-gray-900
+              "
+            >
               {totalLuas.toFixed(2)} m²
-            </b>
-          </p>
+            </h3>
+          </div>
 
-          {/* <p className="text-base md:text-lg">
-            Harga Kerja / m² :
-            <b>
-              {" "}
-              Rp
-              {finalHargaKerja.toLocaleString(
-                "id-ID"
-              )}
-            </b>
-          </p> */}
+          {/* ESTIMASI */}
+          <div
+            className="
+              bg-[#8B5CF6]
+              rounded-2xl
+              p-5
+              text-white
+            "
+          >
+            <p className="text-sm opacity-90">
+              Estimasi Harga
+            </p>
 
-          <p className="text-base md:text-lg">
-            Estimasi Harga :
-            <b>
-              {" "}
+            <h3
+              className="
+                text-2xl md:text-3xl
+                font-black
+                mt-2
+                break-words
+              "
+            >
               Rp
               {total_harga.toLocaleString(
                 "id-ID"
               )}
-            </b>
-          </p>
-        </div>
+            </h3>
+          </div>
 
-        {/* NOTE */}
-        <div
-          className="
-            bg-yellow-100
-            border
-            border-yellow-300
-            p-4
-            rounded-xl
-          "
-        >
-          <p className="font-semibold text-sm md:text-base">
-            Noted :
-          </p>
+          {/* NOTE */}
+          <div
+            className="
+              bg-blue-50
+              border border-blue-200
+              rounded-2xl
+              p-4
+            "
+          >
+            <p
+              className="
+                font-bold
+                text-sm
+                text-blue-700
+                mb-2
+              "
+            >
+              Noted
+            </p>
 
-          <p className="text-xs md:text-sm">
-            Harga bisa berubah tergantung
-            design, kualitas material,
-            kondisi lapangan, dan
-            faktor lainnya, harap hubungi contact person yang tertera
-          </p>
+            <p
+              className="
+                text-sm
+                leading-relaxed
+                text-gray-600
+              "
+            >
+              Harga dapat berubah tergantung
+              desain, kualitas material,
+              kondisi lapangan, dan faktor
+              lainnya. Silakan hubungi
+              contact person untuk informasi
+              lebih lanjut.
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
