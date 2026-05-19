@@ -1,220 +1,205 @@
-import logo2 from "../assets/logo2.png";
-import { Mail } from "lucide-react";
+import Vizdat from "./datviz";
+import AboutUs from "./aboutus";
+import UploadEx from "../pages/uploadEx";
+import Contactus from "../pages/contact";
+import KalkulatorBangunan from "../pages/calc";
 
-export default function Contactus() {
+
+type Props = { 
+  isLogin: boolean;
+  status: string; 
+};
+
+export default function Content({ isLogin, status, }: Props) {
+  
   return (
-    <div className="w-full flex justify-center px-3 py-5">
-      <div
-        className="
-          w-full
-          backdrop-blur-md
-          border
-          border-white/30
-          p-4 md:p-6
-        "
-      >
-        <div
-          className="
-            flex
-            flex-col
-            sm:flex-row
-            items-center
-            gap-5
-          "
-        >
-          {/* LOGO */}
-          <div className="shrink-0">
-            <div
-              className="
-                w-[90px]
-                h-[90px]
-                md:w-[110px]
-                md:h-[110px]
-                rounded-2xl
-                bg-gradient-to-br
-                from-[#6E1170]/10
-                to-purple-100
-                flex
-                items-center
-                justify-center
-                shadow-inner
-              "
-            >
-              <img
-                src={logo2}
-                alt="logo"
-                className="
-                  w-[60px]
-                  md:w-[75px]
-                  object-contain
-                  drop-shadow-sm
-                "
-              />
-            </div>
-          </div>
+    <div className="px-4 md:px-8 lg:px-12 py-6">
 
-          {/* CONTENT */}
+      {/* About Us */}
+      <section id="about-us" className="scroll-mt-24">
+        <AboutUs />
+      </section>
+
+      {/* Check Harga */}
+      <section id="check-harga" className="scroll-mt-24 mt-[300px]">
+        <div className="mb-10 max-w-4xl">
+
           <div
             className="
-              flex-1
-              text-center
-              sm:text-left
+              inline-flex
+              items-center
+              gap-2
+              px-4 py-2
+              rounded-full
+              bg-purple-100
+              text-[#6E1170]
+              text-sm
+              font-semibold
+              mb-5
             "
           >
-            {/* TITLE */}
-            <div className="space-y-0.5">
-              <h1
-                className="
-                  text-xl
-                  md:text-2xl
-                  font-black
-                  tracking-tight
-                  text-[#6E1170]
-                  leading-tight
-                "
-              >
-                Elkyas
-              </h1>
+            Estimasi Harga Bangunan
+          </div>
 
-              <h2
-                className="
-                  text-lg
-                  md:text-xl
-                  font-semibold
-                  text-gray-800
-                  leading-tight
-                "
-              >
-                Karya Agung.
-              </h2>
-            </div>
+          <h2
+            className="
+              text-4xl md:text-6xl
+              font-black
+              leading-[1.05]
+              tracking-tight
+              text-gray-900
+            "
+          >
+            Hitung biaya
+            <br />
 
-            {/* LINE */}
+            <span className="text-[#6E1170]">
+              proyek Anda
+            </span>
+          </h2>
+
+          <p
+            className="
+              mt-6
+              text-base md:text-lg
+              leading-relaxed
+              text-gray-600
+              max-w-2xl
+            "
+          >
+            Estimasi cepat untuk membantu
+            perencanaan pembangunan secara
+            lebih praktis dan efisien.
+          </p>
+
+          <div
+            className="
+              w-24 h-[4px]
+              bg-gradient-to-r
+              from-[#6E1170]
+              to-purple-400
+              rounded-full
+              mt-7
+            "
+          ></div>
+
+        </div>
+
+        <KalkulatorBangunan />
+      </section>
+
+      {/* Check Data */}
+      {isLogin && status === "Admin" &&  (
+      <section
+        id="check-data"
+        className="scroll-mt-24 mt-32"
+      >
+        <div className="mb-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-800">
+            Check Data
+          </h2>
+
+          <p className="mt-2 text-sm md:text-base text-gray-500 max-w-2xl mx-auto">
+            Visualisasi data material dan informasi pendukung lainnya.
+          </p>
+
+          <div className="w-24 h-1 bg-[#8B5CF6] mx-auto rounded-full mt-4"></div>
+        </div>
+
+        <Vizdat />
+      </section>)}
+
+      {/* Upload Data */}
+      {isLogin && status === "Admin" &&  (
+        <section
+          id="upload-data"
+          className="scroll-mt-24 mt-32"
+        >
+          <div className="mb-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-800">
+              Upload Data
+            </h2>
+
+            <p className="mt-2 text-sm md:text-base text-gray-500 max-w-2xl mx-auto">
+              Upload file Excel atau CSV untuk memperbarui data material.
+            </p>
+
+            <div className="w-24 h-1 bg-[#8B5CF6] mx-auto rounded-full mt-4"></div>
+          </div>
+
+          <UploadEx />
+        </section>
+      )}
+            {/* Contact Us */}
+        <section
+          id="contact-us"
+          className="scroll-mt-24 mt-32"
+        >
+          <div className="mb-12 max-w-4xl">
+
             <div
               className="
-                w-16
-                h-[3px]
+                inline-flex
+                items-center
+                gap-2
+                px-4 py-2
+                rounded-full
+                bg-purple-100
+                text-[#6E1170]
+                text-sm
+                font-semibold
+                mb-5
+              "
+            >
+              Konsultasi Proyek
+            </div>
+
+            <h2
+              className="
+                text-4xl md:text-6xl
+                font-black
+                leading-[1.05]
+                tracking-tight
+                text-gray-900
+              "
+            >
+              Mari wujudkan
+              <br />
+
+              <span className="text-[#6E1170]">
+                proyek Anda
+              </span>
+            </h2>
+
+            <p
+              className="
+                mt-6
+                text-base md:text-lg
+                leading-relaxed
+                text-gray-600
+                max-w-2xl
+              "
+            >
+              Diskusikan kebutuhan pembangunan,
+              estimasi biaya, maupun konsultasi
+              material bersama tim kami.
+            </p>
+
+            <div
+              className="
+                w-24 h-[4px]
                 bg-gradient-to-r
                 from-[#6E1170]
                 to-purple-400
                 rounded-full
-                mt-3
-                mx-auto
-                sm:mx-0
+                mt-7
               "
-            />
+            ></div>
 
-            {/* DESCRIPTION */}
-            <p
-              className="
-                text-gray-500
-                text-xs
-                md:text-sm
-                leading-relaxed
-                mt-3
-              "
-            >
-              Hubungi kami dibawah ini:.
-            </p>
-
-            {/* CONTACT */}
-            <div
-              className="
-                mt-4
-                flex
-                flex-col
-                gap-2.5
-              "
-            >
-              {/* EMAIL */}
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-3
-                  bg-white
-                  rounded-xl
-                  px-3
-                  py-2.5
-                  shadow-sm
-                  border
-                  border-gray-100
-                "
-              >
-                <div
-                  className="
-                    w-8
-                    h-8
-                    rounded-lg
-                    bg-[#6E1170]/10
-                    flex
-                    items-center
-                    justify-center
-                    text-[#6E1170]
-                    text-sm
-                    font-bold
-                  "
-                >
-                 <Mail size={16} />
-                </div>
-
-                <div className="flex flex-col text-left">
-                  <span className="text-[10px] text-gray-400">
-                    Email
-                  </span>
-
-                  <span className="text-xs md:text-sm font-semibold text-gray-700 break-all">
-                    elkyaskaryaagung@gmail.com
-                  </span>
-                </div>
-              </div>
-
-              {/* CONTACT */}
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-3
-                  bg-white
-                  rounded-xl
-                  px-3
-                  py-2.5
-                  shadow-sm
-                  border
-                  border-gray-100
-                "
-              >
-                <div
-                  className="
-                    w-8
-                    h-8
-                    rounded-lg
-                    bg-[#6E1170]/10
-                    flex
-                    items-center
-                    justify-center
-                    text-[#6E1170]
-                    text-sm
-                    font-bold
-                  "
-                >
-                  ☎
-                </div>
-
-                <div className="flex flex-col text-left">
-                  <span className="text-[10px] text-gray-400">
-                    Contact
-                  </span>
-
-                  <span className="text-xs md:text-sm font-semibold text-gray-700">
-                    +62 851-5626-3100
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
+
+          <Contactus />
+        </section>
     </div>
   );
 }
