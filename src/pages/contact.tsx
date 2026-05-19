@@ -82,7 +82,7 @@ const whatsappUrl =
                   leading-tight
                 "
               >
-                Lorem
+                Elkyas
               </h1>
 
               <h2
@@ -94,7 +94,7 @@ const whatsappUrl =
                   leading-tight
                 "
               >
-                Ipsum Dolor Amet.
+                Karya Agung.
               </h2>
             </div>
 
@@ -123,8 +123,7 @@ const whatsappUrl =
                 mt-3
               "
             >
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit.
+              Hubungi kami untuk informasi lebih lanjut.
             </p>
 
             {/* CONTACT */}
