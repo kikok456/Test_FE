@@ -17,7 +17,22 @@ export default function AboutUs() {
       <div className="w-full flex gap-6">
 
         {/* Box 1 */}
-        <div className="basis-[30%] rounded-2xl">
+        <div className="basis-[50%] rounded-2xl">
+            <div className="mb-10 max-w-4xl">
+
+    <h2
+      className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight text-gray-900">
+      Bangun proyek
+      <br />
+
+      <span className="text-[#8B5CF6]"> 
+        tanpa kompromi
+      </span>
+    </h2>
+
+    <div className="w-24 h-[4px] bg-[#8B5CF6] rounded-full mt-7"></div>
+
+  </div>
           <p
             className="
               mt-6
@@ -34,7 +49,7 @@ export default function AboutUs() {
         </div>
 
         {/* Box 2 */}
-        <div className="basis-[70%] min-w-0 rounded-2xl overflow-hidden">
+        <div className="basis-[50%] min-w-0 rounded-2xl overflow-hidden">
           <Swiper
             modules={[Navigation, Autoplay]}
             navigation
