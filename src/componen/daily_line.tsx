@@ -3,14 +3,7 @@ import {
   useState,
 } from "react";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-} from "recharts";
+import * as Recharts from "recharts";
 
 export default function DailyLine() {
 
