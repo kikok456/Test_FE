@@ -14,7 +14,7 @@ export default function Vizdat() {
   useEffect(() => {
 
     fetch(
-      "https://test-be-chi-eight.vercel.app/api/data_lampung_summary"
+      "https://test-be-chi-eight.vercel.app/api/dt_lampung_supabase"
     )
       .then(async (res) => {
 
