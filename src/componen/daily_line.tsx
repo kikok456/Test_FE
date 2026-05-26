@@ -64,15 +64,15 @@ export default function DailyLine() {
         data={chartData}
       >
 
-        <CartesianGrid strokeDasharray="3 3" />
+        <Recharts.CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis dataKey="tanggal" />
+        <Recharts.XAxis dataKey="tanggal" />
 
-        <YAxis />
+        <Recharts.YAxis />
 
-        <Tooltip />
+        <Recharts.Tooltip />
 
-        <Line
+        <Recharts.Line
           type="monotone"
           dataKey="total"
           stroke="#2563eb"
