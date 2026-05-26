@@ -1,5 +1,5 @@
 import HargaBarangTable from "../componen/tb_dt_lampung";
-import DailyLine from "../componen/daily_line";
+// import DailyLine from "../componen/daily_line";
 
 export default function Vizdat() {
 
