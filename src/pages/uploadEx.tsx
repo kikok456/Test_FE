@@ -89,7 +89,7 @@ export default function UploadEx() {
 
             const obj: any = {};
 
-            headers.forEach((h, i) => {
+            headers.forEach((_, i) => {
               obj[`COL_${i}`] =
                 row[i] ?? "";
             });
@@ -149,7 +149,7 @@ export default function UploadEx() {
 
           const obj: any = {};
 
-          headers.forEach((h, i) => {
+          headers.forEach((_, i) => {
 
             obj[`COL_${i}`] =
               row[i] ?? "";
