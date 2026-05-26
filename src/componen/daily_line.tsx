@@ -168,14 +168,15 @@ export default function DailyLine() {
               />
 
               <YAxis
-                tickFormatter={rupiah}
+                tickFormatter={(value) =>
+                  rupiah(Number(value))
+                }
               />
 
               <Tooltip
-                formatter={(value: any) => [
-                  `Rp ${rupiah(Number(value))}`,
-                  "Total",
-                ]}
+                formatter={(value: any) =>
+                  `Rp ${rupiah(Number(value))}`
+                }
               />
 
               <Line
