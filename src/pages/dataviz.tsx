@@ -8,32 +8,18 @@ export default function Vizdat() {
     <div className="space-y-6">
 
       {/* TOP */}
-      <div
-        className="
-          w-full
-          flex
-          flex-col
-          md:flex-row
-          gap-6
-        "
-      >
+      <div className="w-full flex flex-col md:flex-row gap-6" >
 
         {/* BOX 1 */}
-        <div className="flex-1">
-          <HargaBarangTable />
+        <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
+          <p>
+            Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.
+          </p>
         </div>
 
         {/* BOX 2 */}
-        <div
-          className="
-            flex-1
-            bg-white
-            rounded-2xl
-            shadow-md
-            p-4
-            md:p-6
-          "
-        >
+        <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipiscing elit.
@@ -41,16 +27,7 @@ export default function Vizdat() {
         </div>
 
         {/* BOX 3 */}
-        <div
-          className="
-            flex-1
-            bg-white
-            rounded-2xl
-            shadow-md
-            p-4
-            md:p-6
-          "
-        >
+        <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipiscing elit.
@@ -60,67 +37,25 @@ export default function Vizdat() {
       </div>
 
       {/* BOTTOM */}
-      <div
-        className="
-          w-full
-          grid
-          grid-cols-1
-          md:grid-cols-2
-          gap-6
-        "
-      >
+      <div className="w-fullgridgrid-cols-1md:grid-cols-2gap-6">
 
-        <div
-          className="
-            bg-white
-            rounded-2xl
-            shadow-md
-            p-4
-            md:p-6
-          "
-        >
+        <div className="flex-1">
+          <HargaBarangTable />
+        </div>
+
+        <div className="bg-whiterounded-2xlshadow-mdp-4md:p-6">
           <p>
             Lorem ipsum dolor sit amet.
           </p>
         </div>
 
-        <div
-          className="
-            bg-white
-            rounded-2xl
-            shadow-md
-            p-4
-            md:p-6
-          "
-        >
+        <div className="bg-whiterounded-2xlshadow-mdp-4md:p-6">
           <p>
             Lorem ipsum dolor sit amet.
           </p>
         </div>
 
-        <div
-          className="
-            bg-white
-            rounded-2xl
-            shadow-md
-            p-4
-            md:p-6
-          "
-        >
-          <p>
-            Lorem ipsum dolor sit amet.
-          </p>
-        </div>
-
-        <div
-          className="
-            bg-white
-            rounded-2xl
-            shadow-md
-            p-4
-            md:p-6
-          "
-        >
+        <div className="bg-whiterounded-2xlshadow-mdp-4md:p-6">
           <p>
             Lorem ipsum dolor sit amet.
           </p>
