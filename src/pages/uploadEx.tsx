@@ -33,6 +33,7 @@ export default function UploadEx() {
       .then(async (res) => {
 
         if (!res.ok) {
+
           console.error(
             "API ERROR:",
             res.status
@@ -65,6 +66,41 @@ export default function UploadEx() {
   }, []);
 
   // =====================================
+  // FORMAT DATE
+  // =====================================
+
+  const formatDate = (
+    value: any
+  ) => {
+
+    // kalau Date object
+    if (
+      value instanceof Date &&
+      !isNaN(
+        value.getTime()
+      )
+    ) {
+
+      const day =
+        String(
+          value.getDate()
+        ).padStart(2, "0");
+
+      const month =
+        String(
+          value.getMonth() + 1
+        ).padStart(2, "0");
+
+      const year =
+        value.getFullYear();
+
+      return `${day}/${month}/${year}`;
+    }
+
+    return value;
+  };
+
+  // =====================================
   // FORMAT ROW
   // =====================================
 
@@ -73,39 +109,54 @@ export default function UploadEx() {
   ) => {
 
     if (rows.length < 2) {
+
       alert("File kosong");
+
       return [];
     }
 
     // cari kolom valid
-    const validIndexes = rows[0]
-      .map((h, i) => ({
-        h,
-        i,
-      }))
-      .filter(
-        (x) =>
-          String(x.h).trim() !== ""
-      );
+    const validIndexes =
+      rows[0]
+        .map((h, i) => ({
+          h,
+          i,
+        }))
+        .filter(
+          (x) =>
+            String(
+              x.h
+            ).trim() !== ""
+        );
 
-    const body = rows.slice(1);
+    const body =
+      rows.slice(1);
 
-    const formatted = body.map(
-      (row) => {
+    const formatted =
+      body.map((row) => {
 
         const obj: any = {};
 
         validIndexes.forEach(
           (x, idx) => {
 
-            obj[`COL_${idx}`] =
+            let value =
               row[x.i] ?? "";
+
+            // format date excel
+            value =
+              formatDate(
+                value
+              );
+
+            obj[
+              `COL_${idx}`
+            ] = value;
           }
         );
 
         return obj;
-      }
-    );
+      });
 
     return formatted;
   };
@@ -136,18 +187,26 @@ export default function UploadEx() {
     if (ext === "csv") {
 
       Papa.parse(file, {
+
         header: false,
+
         skipEmptyLines: false,
 
-        complete: (result) => {
+        complete: (
+          result
+        ) => {
 
           const rows =
             result.data as any[][];
 
           const formatted =
-            buildData(rows);
+            buildData(
+              rows
+            );
 
-          setData(formatted);
+          setData(
+            formatted
+          );
         },
       });
     }
@@ -164,14 +223,23 @@ export default function UploadEx() {
       const reader =
         new FileReader();
 
-      reader.onload = (evt) => {
+      reader.onload = (
+        evt
+      ) => {
 
-        const wb = XLSX.read(
-          evt.target?.result,
-          {
-            type: "binary",
-          }
-        );
+        const wb =
+          XLSX.read(
+            evt.target
+              ?.result,
+            {
+              type:
+                "binary",
+
+              // penting
+              cellDates:
+                true,
+            }
+          );
 
         const sheet =
           wb.Sheets[
@@ -183,15 +251,25 @@ export default function UploadEx() {
             sheet,
             {
               header: 1,
+
               defval: "",
-              blankrows: false,
+
+              blankrows:
+                false,
+
+              // penting
+              raw: false,
             }
           );
 
         const formatted =
-          buildData(rows);
+          buildData(
+            rows
+          );
 
-        setData(formatted);
+        setData(
+          formatted
+        );
       };
 
       reader.readAsBinaryString(
@@ -210,8 +288,12 @@ export default function UploadEx() {
 
     setSelectedTable("");
 
-    if (fileRef.current) {
-      fileRef.current.value = "";
+    if (
+      fileRef.current
+    ) {
+
+      fileRef.current.value =
+        "";
     }
   };
 
@@ -222,7 +304,9 @@ export default function UploadEx() {
   const handleSave =
     async () => {
 
-      if (!selectedTable) {
+      if (
+        !selectedTable
+      ) {
 
         alert(
           "Pilih tabel dulu!"
@@ -231,7 +315,9 @@ export default function UploadEx() {
         return;
       }
 
-      if (data.length === 0) {
+      if (
+        data.length === 0
+      ) {
 
         alert(
           "Tidak ada data!"
@@ -242,23 +328,29 @@ export default function UploadEx() {
 
       try {
 
-        const res = await fetch(
-          "https://test-be-chi-eight.vercel.app/api/upload_supabase",
-          {
-            method: "POST",
+        const res =
+          await fetch(
+            "https://test-be-chi-eight.vercel.app/api/upload_supabase",
+            {
+              method:
+                "POST",
 
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
 
-            body: JSON.stringify({
-              table:
-                selectedTable,
-              data,
-            }),
-          }
-        );
+              body:
+                JSON.stringify(
+                  {
+                    table:
+                      selectedTable,
+
+                    data,
+                  }
+                ),
+            }
+          );
 
         const result =
           await res.json();
@@ -273,12 +365,16 @@ export default function UploadEx() {
 
         } else {
 
-          alert(result.message);
+          alert(
+            result.message
+          );
         }
 
       } catch (err) {
 
-        console.error(err);
+        console.error(
+          err
+        );
 
         alert(
           "Error koneksi"
@@ -314,7 +410,9 @@ export default function UploadEx() {
             ref={fileRef}
             type="file"
             accept=".csv,.xlsx,.xls"
-            onChange={handleFile}
+            onChange={
+              handleFile
+            }
             className="hidden"
           />
         </label>
@@ -324,7 +422,9 @@ export default function UploadEx() {
       <div className="flex justify-center mb-4">
 
         <select
-          value={selectedTable}
+          value={
+            selectedTable
+          }
           onChange={(e) =>
             setSelectedTable(
               e.target.value
@@ -357,7 +457,8 @@ export default function UploadEx() {
       </div>
 
       {/* Preview */}
-      {data.length > 0 && (
+      {data.length >
+        0 && (
 
         <div
           className="
@@ -376,28 +477,37 @@ export default function UploadEx() {
 
                 {Object.keys(
                   data[0]
-                ).map((key) => (
+                ).map(
+                  (key) => (
 
-                  <th
-                    key={key}
-                    className="
-                      border
-                      px-2
-                      py-1
-                    "
-                  >
-                    {key}
-                  </th>
-                ))}
+                    <th
+                      key={
+                        key
+                      }
+                      className="
+                        border
+                        px-2
+                        py-1
+                      "
+                    >
+                      {key}
+                    </th>
+                  )
+                )}
               </tr>
             </thead>
 
             <tbody>
 
               {data.map(
-                (row, i) => (
+                (
+                  row,
+                  i
+                ) => (
 
-                  <tr key={i}>
+                  <tr
+                    key={i}
+                  >
 
                     {Object.values(
                       row
@@ -408,14 +518,18 @@ export default function UploadEx() {
                       ) => (
 
                         <td
-                          key={idx}
+                          key={
+                            idx
+                          }
                           className="
                             border
                             px-2
                             py-1
                           "
                         >
-                          {String(val)}
+                          {String(
+                            val
+                          )}
                         </td>
                       )
                     )}
@@ -428,7 +542,8 @@ export default function UploadEx() {
       )}
 
       {/* Buttons */}
-      {data.length > 0 && (
+      {data.length >
+        0 && (
 
         <div
           className="
