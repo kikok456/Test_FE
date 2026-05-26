@@ -22,6 +22,109 @@ export default function DailyLine() {
     useState(true);
 
   // =====================================
+  // PARSE RUPIAH
+  // =====================================
+
+  const parseRupiah = (
+    value: any
+  ) => {
+
+    // kalau sudah number
+    if (
+      typeof value ===
+      "number"
+    ) {
+      return value;
+    }
+
+    if (!value) {
+      return 0;
+    }
+
+    let str =
+      String(value)
+        .trim();
+
+    // hapus Rp & spasi
+    str = str
+      .replace(/Rp/gi, "")
+      .replace(/\s/g, "");
+
+    // =========================
+    // FORMAT:
+    // 10,000
+    // =========================
+
+    if (
+      /^\d{1,3}(,\d{3})+$/.test(
+        str
+      )
+    ) {
+
+      str =
+        str.replace(
+          /,/g,
+          ""
+        );
+    }
+
+    // =========================
+    // FORMAT:
+    // 10.000
+    // =========================
+
+    else if (
+      /^\d{1,3}(\.\d{3})+$/.test(
+        str
+      )
+    ) {
+
+      str =
+        str.replace(
+          /\./g,
+          ""
+        );
+    }
+
+    // =========================
+    // FORMAT:
+    // 10.000,50
+    // =========================
+
+    else if (
+      str.includes(".") &&
+      str.includes(",")
+    ) {
+
+      str = str
+        .replace(/\./g, "")
+        .replace(",", ".");
+    }
+
+    // =========================
+    // FORMAT:
+    // 10000,50
+    // =========================
+
+    else if (
+      /^\d+,\d+$/.test(
+        str
+      )
+    ) {
+
+      str =
+        str.replace(
+          ",",
+          "."
+        );
+    }
+
+    return (
+      Number(str) || 0
+    );
+  };
+
+  // =====================================
   // GET DATA
   // =====================================
 
@@ -33,6 +136,7 @@ export default function DailyLine() {
       .then(async (res) => {
 
         if (!res.ok) {
+
           throw new Error(
             "Gagal ambil data"
           );
@@ -48,40 +152,98 @@ export default function DailyLine() {
 
         const grouped: any = {};
 
-        res.forEach((item: any) => {
+        res.forEach(
+          (item: any) => {
 
-          const tanggal =
-            String(item.waktu_pengeluaran)
-              .split(" ")[0];
+            const tanggal =
+              String(
+                item.waktu_pengeluaran
+              ).split(" ")[0];
 
-          const total =
-            Number(item.total) || 0;
+            // parse total rupiah
+            const total =
+              parseRupiah(
+                item.total
+              );
 
-          if (!grouped[tanggal]) {
-            grouped[tanggal] = 0;
+            if (
+              !grouped[
+                tanggal
+              ]
+            ) {
+
+              grouped[
+                tanggal
+              ] = 0;
+            }
+
+            grouped[
+              tanggal
+            ] += total;
           }
-
-          grouped[tanggal] += total;
-        });
+        );
 
         // ==============================
         // FORMAT CHART DATA
         // ==============================
 
         const formatted =
-          Object.keys(grouped)
-            .sort()
-            .map((tanggal) => ({
+          Object.keys(
+            grouped
+          )
+            .sort(
+              (
+                a,
+                b
+              ) => {
 
-              tanggal,
-              total: grouped[tanggal],
-            }));
+                const [
+                  da,
+                  ma,
+                  ya,
+                ] = a
+                  .split("/");
 
-        setChartData(formatted);
+                const [
+                  db,
+                  mb,
+                  yb,
+                ] = b
+                  .split("/");
+
+                return (
+                  new Date(
+                    `${ya}-${ma}-${da}`
+                  ).getTime() -
+                  new Date(
+                    `${yb}-${mb}-${db}`
+                  ).getTime()
+                );
+              }
+            )
+            .map(
+              (
+                tanggal
+              ) => ({
+
+                tanggal,
+
+                total:
+                  grouped[
+                    tanggal
+                  ],
+              })
+            );
+
+        setChartData(
+          formatted
+        );
       })
       .catch((err) => {
 
-        console.error(err);
+        console.error(
+          err
+        );
 
         alert(
           "Gagal ambil data"
@@ -89,7 +251,9 @@ export default function DailyLine() {
       })
       .finally(() => {
 
-        setLoading(false);
+        setLoading(
+          false
+        );
       });
 
   }, []);
@@ -168,12 +332,22 @@ export default function DailyLine() {
               />
 
               <YAxis
-                tickFormatter={rupiah}
+                tickFormatter={
+                  rupiah
+                }
               />
 
               <Tooltip
-                formatter={(value: any) => [
-                  `Rp ${rupiah(Number(value))}`,
+                formatter={(
+                  value: any
+                ) => [
+
+                  `Rp ${rupiah(
+                    Number(
+                      value
+                    )
+                  )}`,
+
                   "Total",
                 ]}
               />
