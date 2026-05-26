@@ -80,22 +80,35 @@ export default function UploadEx() {
           }
 
           // header excel
-          const headers = rows[0];
+          const headers = rows[0].filter(
+  (h) => String(h).trim() !== ""
+);
 
           // isi data
           const body = rows.slice(1);
 
-          const formatted = body.map((row) => {
+const validIndexes = rows[0]
+  .map((h, i) => ({
+    h,
+    i,
+  }))
+  .filter(
+    (x) =>
+      String(x.h).trim() !== ""
+  );
 
-            const obj: any = {};
+const formatted = body.map((row) => {
 
-            headers.forEach((_, i) => {
-              obj[`COL_${i}`] =
-                row[i] ?? "";
-            });
+  const obj: any = {};
 
-            return obj;
-          });
+  validIndexes.forEach((x, idx) => {
+
+    obj[`COL_${idx}`] =
+      row[x.i] ?? "";
+  });
+
+  return obj;
+});
 
           setData(formatted);
         },
