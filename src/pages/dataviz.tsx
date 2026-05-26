@@ -1,5 +1,5 @@
 import HargaBarangTable from "../componen/tb_dt_lampung";
-import dailyline from "../componen/daily_line";
+import DailyLine from "../componen/daily_line";
 
 export default function Vizdat() {
 
@@ -12,7 +12,7 @@ export default function Vizdat() {
 
         {/* BOX 1 */}
         <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
-          <dailyline />
+          <DailyLine />
         </div>
 
         {/* BOX 2 */}
