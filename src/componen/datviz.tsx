@@ -100,7 +100,7 @@ export default function Vizdat() {
         {/* TABLE */}
         <div
           className="
-            overflow-auto
+            overflow-auto max-h-[500px]
           "
         >
 
