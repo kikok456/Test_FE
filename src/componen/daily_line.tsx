@@ -3,7 +3,14 @@ import {
   useState,
 } from "react";
 
-import * as Recharts from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 
 export default function DailyLine() {
 
@@ -58,27 +65,27 @@ export default function DailyLine() {
         Pengeluaran Harian
       </h2>
 
-      <Recharts.LineChart
+      <LineChart
         width={800}
         height={400}
         data={chartData}
       >
 
-        <Recharts.CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" />
 
-        <Recharts.XAxis dataKey="tanggal" />
+        <XAxis dataKey="tanggal" />
 
-        <Recharts.YAxis />
+        <YAxis />
 
-        <Recharts.Tooltip />
+        <Tooltip />
 
-        <Recharts.Line
+        <Line
           type="monotone"
           dataKey="total"
           stroke="#2563eb"
         />
 
-      </Recharts.LineChart>
+      </LineChart>
     </div>
   );
 }
