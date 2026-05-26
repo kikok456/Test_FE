@@ -131,7 +131,7 @@ export default function DailyLine() {
   useEffect(() => {
 
     fetch(
-      "https://test-be-chi-eight.vercel.app/api/dt_lampung_supabase"
+      "https://test-be-chi-eight.vercel.app/api/lampung_raw_supabase"
     )
       .then(async (res) => {
 
