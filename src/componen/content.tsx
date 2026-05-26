@@ -1,4 +1,4 @@
-import Vizdat from "./datviz";
+import Vizdat from "../pages/dataviz";
 import AboutUs from "./aboutus";
 import UploadEx from "../pages/uploadEx";
 import Contactus from "../pages/contact";
