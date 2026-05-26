@@ -58,7 +58,7 @@ export default function DailyLine() {
         Pengeluaran Harian
       </h2>
 
-      <LineChart
+      <Recharts.LineChart
         width={800}
         height={400}
         data={chartData}
@@ -78,7 +78,7 @@ export default function DailyLine() {
           stroke="#2563eb"
         />
 
-      </LineChart>
+      </Recharts.LineChart>
     </div>
   );
 }
