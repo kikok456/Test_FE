@@ -11,9 +11,9 @@ export default function Vizdat() {
       <div className="w-full flex flex-col md:flex-row gap-6" >
 
         {/* BOX 1 */}
-        <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
+        {/* <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
           <DailyLine />
-        </div>
+        </div> */}
 
         {/* BOX 2 */}
         <div className="flex-1 bg-white rounded-2xl shadow-md p-4 md:p-6" >
