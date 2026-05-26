@@ -37,30 +37,30 @@ export default function Vizdat() {
       </div>
 
       {/* BOTTOM */}
-      <div className="w-fullgridgrid-cols-1md:grid-cols-2gap-6">
-
+      <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-6 ">
+      
         <div className="flex-1">
           <HargaBarangTable />
         </div>
-
-        <div className="bg-whiterounded-2xlshadow-mdp-4md:p-6">
+      
+        <div className=" bg-white rounded-2xl shadow-md p-4 md:p-6" >
           <p>
             Lorem ipsum dolor sit amet.
           </p>
         </div>
-
-        <div className="bg-whiterounded-2xlshadow-mdp-4md:p-6">
+      
+        <div className=" bg-white rounded-2xl shadow-md p-4 md:p-6" >
           <p>
             Lorem ipsum dolor sit amet.
           </p>
         </div>
-
-        <div className="bg-whiterounded-2xlshadow-mdp-4md:p-6">
+      
+        <div className=" bg-white rounded-2xl shadow-md p-4 md:p-6" >
           <p>
             Lorem ipsum dolor sit amet.
           </p>
         </div>
-
+      
       </div>
     </div>
   );
