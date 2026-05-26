@@ -1,5 +1,5 @@
 import HargaBarangTable
-from "../components/tb_dt_lampung";
+from "../componen/tb_dt_lampung";
 
 export default function Vizdat() {
 
