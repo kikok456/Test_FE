@@ -56,7 +56,9 @@ useEffect(() => {
       reader.onload = (evt) => {
         const wb = XLSX.read(evt.target?.result, { type: "binary" });
         const sheet = wb.Sheets[wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(sheet);
+        const json = XLSX.utils.sheet_to_json(sheet, {
+                      defval: "",
+                    });
         setData(json);
       };
 
